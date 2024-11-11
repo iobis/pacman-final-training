@@ -20,7 +20,6 @@ The pipeline also includes a VSEARCH step which uses kmer search to find the clo
 | RDP Classifier | family X (confidence 1), genus Y (confidence 0.9), species B (confidence 0.3) |
 | VSEARCH |  family X, genus Y, species A (identity 0.997) <br/> family X, genus Y, species B (identity 0.995) <br/> family X, genus Y, species B (identity 0.995) <br/> family X, genus Y, species A (identity 0.992) <br/> family X, genus Z, species C (identity 0.983) <br/> family X, genus Z, species C (identity 0.975) <br/>|
 
-
 ### Running the PacMAN pipeline
 
 The PacMAN bioinformatics pipeline is workflow based on commonly used bioinformatics tools and custom scripts. The pipeline can be run using the Snakemake workflow management system. Snakemake takes care of installing the necessary dependencies in Conda environments, and running the different steps of the pipeline in the correct order.
@@ -59,7 +58,7 @@ See the [data preparation section](https://github.com/iobis/PacMAN-pipeline/blob
             └── wordConditionalProbIndexArr.txt
 ```
 
-Run the pipeline with Snakemake or Docker using the following commands:
+Run the pipeline with Snakemake or Docker using either of the following commands:
 
 ```bash
 snakemake --use-conda --configfile data/config_files/config.yaml --rerun-incomplete --printshellcmds
@@ -72,6 +71,25 @@ docker run --platform linux/amd64 \
 ```
 
 ![pipeline run](images/pipeline.svg)
+
+### PacMAN pipeline results
+
+Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) to explore an example pipeline result. To visualize the taxonomic composition of the dataset, run the following code in an R notebook:
+
+```R
+library(dplyr)
+library(psadd)
+library(phyloseq)
+
+ps <- readRDS("shared/example_results/05-dwca/phyloseq_object.rds")
+tax_table(ps) <- tax_table(ps) %>%
+    as.data.frame() %>%
+    select(phylum, class, order, family, genus, species) %>%
+    as.matrix(rownames.force = T)
+plot_krona(ps, output = "krona_plot", variable = "eventID")
+```
+
+![krona](images/krona.png)
 
 ## Biodiversity data publishing
 ## Decision support
