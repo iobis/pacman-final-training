@@ -70,11 +70,21 @@ docker run --platform linux/amd64 \
     pieterprovoost/pacman-pipeline
 ```
 
-![pipeline run](images/pipeline.svg)
+![pipeline run](images/condensed.svg)
 
 ### PacMAN pipeline results
+#### Pipeline report
 
-Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) to explore an example pipeline result. To visualize the taxonomic composition of the dataset, run the following code in an R notebook:
+Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) to explore an example pipeline result. Navigte to the example dataset in `shared/example_results` and check the following files:
+
+- the pipeline report in `results/PacMAN/runs/COI/06-report`
+- the Darwin Core tables in `results/PacMAN/runs/COI/05-dwca`
+
+#### Exploring taxonomic composition in R
+
+The pipeline results are also available as a phyloseq object, which makes it very convenient to analyse the dataset in R. To read more about this data format, continue to the [phyloseq website](https://joey711.github.io/phyloseq/import-data.html#phyloseq-ize_data_already_in_r).
+
+For example, to visualize the taxonomic composition of the dataset as a Krona plot, run the following code in an R notebook:
 
 ```R
 library(dplyr)
@@ -82,16 +92,46 @@ library(psadd)
 library(phyloseq)
 
 ps <- readRDS("shared/example_results/05-dwca/phyloseq_object.rds")
+
 tax_table(ps) <- tax_table(ps) %>%
     as.data.frame() %>%
     select(phylum, class, order, family, genus, species) %>%
     as.matrix(rownames.force = T)
+
 plot_krona(ps, output = "krona_plot", variable = "eventID")
 ```
+
+Then open the resulting `krona_plot.html` file.
 
 ![krona](images/krona.png)
 
 ## Biodiversity data publishing
+
+![dwc](https://ipt.gbif.org/manual/en/ipt/latest/_images/figures/dwc-a_event.png)
+
+After conversion to Darwin Core, our dataset can be published to OBIS trough a Integrated Publishing Toolkit (IPT) instance. For this training we will work on the OBIS training IPT. Go to <https://ipt.iobis.org/training> and sign in with the provided credentials.
+Download the example dataset and identify the Occurrence and DNADerivedData files in `results/PacMAN/runs/COI/05-dwca`.
+
+To create a new dataset in IPT, navigate to the "Manage Resources" tab and click "Create new".
+
+### IPT metadata form
+
+Scroll to the "Metadata" section and click "Edit". Minimal metadata needs to be completed to be able to publish the dataset, such as a title, license, description, and contacts. After completing the form, click "Save" at the top.
+
+### IPT data upload
+
+Go back to the dataset overview and scroll to the "Source Data" section. Click "Add" on the right. Upload the Ocurrence and DNADerivedData files, but make sure to check if the number of columns detected is correct. If not, adjust the field delimiter (should be `\t`), and click `Options > Analyze` at the top to update the number of columns.
+
+### IPT terms mapping
+
+Now go to "Darwin Core Mappings" and click "Add". First select "Darwin Core Occurrence" and pick the appropriate source file. Click "Save" to continue.
+
+As the files are using Darwin Core terms, the mapping is done automatically and we can confirm with "Save".
+
+### IPT publishing
+
+We are now ready to publish. First set visibility to public the "Visibility" section, then go to the "Publishing" section, and click "Publish" on the right.
+
 ## Decision support
 ## Other resources
 
