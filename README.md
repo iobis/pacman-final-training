@@ -79,7 +79,7 @@ docker run --platform linux/amd64 \
 
 ### PacMAN pipeline results
 
-#### Pipeline report
+#### Pipeline report and Darwin Core files
 
 Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) with the provided credentials to explore an example pipeline result dataset. JupyterHub is an online coomputing environment that allows us to explore data data without the need to download any files or install any software locally.
 
