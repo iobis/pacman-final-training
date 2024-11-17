@@ -131,19 +131,33 @@ After conversion to Darwin Core tables, our dataset can be published to OBIS tro
 
 :point_right: To create a new dataset in IPT, navigate to the `Manage Resources` tab and click `Create new`.
 
+![](images/ipt_1.png)
+![](images/ipt_2.png)
+
 ### IPT: metadata form
+
+![](images/ipt_8.png)
 
 :point_right: Scroll to the `Metadata` section and click `Edit`. Minimal metadata needs to be completed to be able to publish the dataset, such as a title, license, description, and contacts. After completing the form, click `Save` at the top.
 
 ### IPT: data upload
 
+![](images/ipt_3.png)
+
 :point_right: Go back to the dataset overview and scroll to the `Source Data` section. Click `Add` on the right. Upload the Ocurrence and DNADerivedData files, but make sure to check if the number of columns detected is correct. If not, adjust the field delimiter (should be `\t`), and click `Options > Analyze` at the top to update the number of columns.
+
+![](images/ipt_4.png)
+![](images/ipt_5.png)
 
 ### IPT: terms mapping
 
+![](images/ipt_6.png)
+
 :point_right: Now go to `Darwin Core Mappings` and click `Add`. First select `Darwin Core Occurrence` and pick the appropriate source file. Click `Save` to continue.
 
-As the files are using Darwin Core terms, the mapping is done automatically and we can confirm with `Save`.
+As the files are using Darwin Core terms, the mapping is done automatically and we can confirm with `Save`. Also add a mapping for the DNA table.
+
+![](images/ipt_7.png)
 
 ### IPT: publishing
 
