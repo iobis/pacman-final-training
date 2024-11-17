@@ -29,7 +29,7 @@ The PacMAN decision support system uses taxonomic annotations from both algorith
 
 ### Running the PacMAN pipeline
 
-The [PacMAN bioinformatics pipeline](https://github.com/iobis/PacMAN-pipeline) is workflow based on commonly used bioinformatics tools and custom scripts. The pipeline is orchestrated using the [Snakemake](https://snakemake.github.io/) workflow management system. Snakemake takes care of installing the necessary dependencies in [Conda](https://docs.conda.io/en/latest/) environments, and running the different steps of the pipeline in the correct order.
+The [PacMAN bioinformatics pipeline](https://github.com/iobis/PacMAN-pipeline) is workflow based on **commonly used bioinformatics tools** and **custom scripts**. The pipeline is orchestrated using the [Snakemake](https://snakemake.github.io/) workflow management system. Snakemake takes care of installing the necessary dependencies in [Conda](https://docs.conda.io/en/latest/) environments, and running the different steps of the pipeline in the correct order.
 
 In addition to installing Conda and Snakemake locally, it's also possible to run the pipeline using Docker. In this case, the pipeline is encapsulated in a Docker container, and the data and results folders are mounted as "volumes" so they can be shared between the Docker container and the host machine.
 
