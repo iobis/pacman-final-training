@@ -181,8 +181,6 @@ Administrators of the system can:
 - Add notes about species
 - Add notes about a specific species in an area
 
-:warning: To do: show pest status when not signed in.
-
 ## Other resources
 
 - [OBIS SG 12 training](https://github.com/iobis/sg-12-training): training materials on R, JupyterHub, git, and DNADerivedData.
