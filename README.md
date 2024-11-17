@@ -183,6 +183,9 @@ A few examples:
 - [Detection of Perna viridis](https://portal.pacman.obis.org/detection/16841/)
   - `Low` confidence score because there are just 7 reads.
   - `High` risk score because the species is on a priority list for the area. In addition, it is detected in its introduced range and is known to have impacts.
+- [Detection of Eualetes tulipa](https://portal.pacman.obis.org/detection/16585/)
+  - `Medium` confidence score due to sufficient reads and 100% identity with reference sequence.
+  - `Medium` risk score because the occurrence is within the thermal range of the species, and impacts have been recorded for other areas.
 - [Detection of Musculus viridulus](https://portal.pacman.obis.org/detection/17090/)
   - `High` confidence score because it is a morphological identification.
   - `Low` risk score because it is not recorded within the introduced range, and the species is not recorded as invasive anywhere (at least according to WRiMS).
