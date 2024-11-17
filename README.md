@@ -1,6 +1,6 @@
 # PacMAN final meeting training
 
-The goal of this training session is to go over the data submission process for the PacMAN decision support tool, and do a hands-on demonstration of every step in the process.
+The goal of this training session is to go over the data submission process for the PacMAN decision support tool, and do a hands-on demonstration of every step in the process. Steps that you as a participant can try on your own computer are indicated with :point_right:.
 
 ![portal](images/portal.png)
 
@@ -14,7 +14,7 @@ The PacMAN decision support system integrates detections from various sources by
 
 ### Taxonomic annotation
 
-The PacMAN pipeline uses a number of taxonomic annotation algorithms. The main taxonomic assignment, which is used to populate the `scientificName` field in Darwin Core, is the naïve Bayesian classifier [RDP Classifier](https://pmc.ncbi.nlm.nih.gov/articles/PMC1950982/). RDP Classifier calculates a probability for every possible taxonomic annotation using k-mer frequences, and then applies a bootstrapping procedure to obtain a confidence score for each taxonomic level.
+The PacMAN pipeline uses a number of **taxonomic annotation algorithms**. The main taxonomic assignment, which is used to populate the `scientificName` field in Darwin Core, is the naïve Bayesian classifier [RDP Classifier](https://pmc.ncbi.nlm.nih.gov/articles/PMC1950982/). RDP Classifier calculates a probability for every possible taxonomic annotation using k-mer frequences, and then applies a bootstrapping procedure to obtain a confidence score for each taxonomic level.
 
 The pipeline also includes a [VSEARCH](https://github.com/torognes/vsearch) step which uses k-mer based search to find the closest matches in a reference database. VSEARCH also provides a similarity score for each matching sequence. The results from this alternative algorithm are included in the `identificationRemarks` Darwin Core field.
 
@@ -83,9 +83,9 @@ docker run --platform linux/amd64 \
 
 #### Pipeline report and Darwin Core files
 
-Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) with the provided credentials to explore an example pipeline result dataset. JupyterHub is an online computing environment that allows us to explore data data without the need to download any files or install any software locally.
+:point_right: Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) with the provided credentials to explore an example pipeline result dataset. JupyterHub is an online computing environment that allows us to explore data data without the need to download any files or install any software locally.
 
-Navigte to the example dataset in `shared/example_results` and check the following files:
+:point_right: Navigate to the example dataset in `shared/example_results` and check the following files:
 
 - The pipeline report in `results/PacMAN/runs/COI/06-report`
 - The Darwin Core tables in `results/PacMAN/runs/COI/05-dwca`
@@ -96,7 +96,7 @@ Navigte to the example dataset in `shared/example_results` and check the followi
 
 The pipeline results are also available as a `phyloseq` object, which makes it very convenient to analyse the dataset in R. To read more about this data format, continue to the [phyloseq website](https://joey711.github.io/phyloseq/import-data.html#phyloseq-ize_data_already_in_r).
 
-For example, to visualize the taxonomic composition of the dataset as a Krona plot, run the following code in an R notebook:
+:point_right: For example, to visualize the taxonomic composition of the dataset as a Krona plot, run the following code in an R notebook:
 
 ```R
 library(dplyr)
@@ -123,29 +123,31 @@ After conversion to Darwin Core tables, our dataset can be published to OBIS tro
 
 ![dwc](https://ipt.gbif.org/manual/en/ipt/latest/_images/figures/dwc-a_event.png)
 
-For this training we will work on the OBIS training IPT. Go to <https://ipt.iobis.org/training> and sign in with the provided credentials.
+:point_right: For this training we will work on the OBIS training IPT. Go to <https://ipt.iobis.org/training> and sign in with the provided credentials.
 
-Before proceeding, download the occurrence and DNA tables from the example dataset in JupyterHub (find both files in `results/PacMAN/runs/COI/05-dwca`).
+:point_right: Before proceeding, download the occurrence and DNA tables from the example dataset in JupyterHub (find both files in `results/PacMAN/runs/COI/05-dwca`).
 
-To create a new dataset in IPT, navigate to the `Manage Resources` tab and click `Create new`.
+### IPT: create a new dataset
 
-### IPT metadata form
+:point_right: To create a new dataset in IPT, navigate to the `Manage Resources` tab and click `Create new`.
 
-Scroll to the `Metadata` section and click `Edit`. Minimal metadata needs to be completed to be able to publish the dataset, such as a title, license, description, and contacts. After completing the form, click `Save` at the top.
+### IPT: metadata form
 
-### IPT data upload
+:point_right: Scroll to the `Metadata` section and click `Edit`. Minimal metadata needs to be completed to be able to publish the dataset, such as a title, license, description, and contacts. After completing the form, click `Save` at the top.
 
-Go back to the dataset overview and scroll to the `Source Data` section. Click `Add` on the right. Upload the Ocurrence and DNADerivedData files, but make sure to check if the number of columns detected is correct. If not, adjust the field delimiter (should be `\t`), and click `Options > Analyze` at the top to update the number of columns.
+### IPT: data upload
 
-### IPT terms mapping
+:point_right: Go back to the dataset overview and scroll to the `Source Data` section. Click `Add` on the right. Upload the Ocurrence and DNADerivedData files, but make sure to check if the number of columns detected is correct. If not, adjust the field delimiter (should be `\t`), and click `Options > Analyze` at the top to update the number of columns.
 
-Now go to `Darwin Core Mappings` and click `Add`. First select `Darwin Core Occurrence` and pick the appropriate source file. Click `Save` to continue.
+### IPT: terms mapping
+
+:point_right: Now go to `Darwin Core Mappings` and click `Add`. First select `Darwin Core Occurrence` and pick the appropriate source file. Click `Save` to continue.
 
 As the files are using Darwin Core terms, the mapping is done automatically and we can confirm with `Save`.
 
-### IPT publishing
+### IPT: publishing
 
-We are now ready to publish. First set visibility to public the `Visibility` section, then go to the `Publishing` section, and click `Publish` on the right. If we were working on a production IPT instance, the dataset would now be ingested by OBIS and be available for the decision support system.
+:point_right: We are now ready to publish. First set visibility to public the `Visibility` section, then go to the `Publishing` section, and click `Publish` on the right. If we were working on a production IPT instance, the dataset would now be ingested by OBIS and be available for the decision support system.
 
 To see how records are made available by the OBIS system, run [this API call](https://api.obis.org/occurrence?geometry=POLYGON%20((178.342438%20-18.216307,%20178.342438%20-18.071451,%20178.534698%20-18.071451,%20178.534698%20-18.216307,%20178.342438%20-18.216307))) which fetches occurrence data from the Suva area.
 
@@ -172,7 +174,9 @@ Use the taxon filter on the right to show the detections for a single species, [
 
 ### Scan data page
 
-This page allows quickly scanning pipeline results before submitting data to OBIS. Taxonomic identifiers are extracted from the data, and a list of matching risk analyses is shown. Test this by submitting the occurrence file you downloaded earlier.
+This page allows quickly scanning pipeline results before submitting data to OBIS. Taxonomic identifiers are extracted from the data, and a list of matching risk analyses is shown.
+
+:point_right: Test this by submitting the occurrence file you downloaded earlier.
 
 ![scan](images/scan.png)
 
