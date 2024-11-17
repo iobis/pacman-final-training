@@ -148,6 +148,7 @@ We are now ready to publish. First set visibility to public the `Visibility` sec
 To see how records are made available by the OBIS system, run [this API call](https://api.obis.org/occurrence?geometry=POLYGON%20((178.342438%20-18.216307,%20178.342438%20-18.071451,%20178.534698%20-18.071451,%20178.534698%20-18.216307,%20178.342438%20-18.216307))) which fetches occurrence data from the Suva area.
 
 ## Decision support
+### Detections
 
 Go to the PacMAN decision support portal at <https://portal.pacman.obis.org/>. The portal home page shows all detections (most recent first) regardless of their identification confidence score or assessed risk level. To read more about confidence scores and risk levels, navigate to the `About` page.
 
@@ -168,6 +169,21 @@ A few examples:
   - `Low` risk score because it is not recorded within the introduced range, and the species is not recorded as invasive anywhere (according to WRiMS).
 
 Use the taxon filter on the right to show the detections for a single species, [for example: Didemnum perlucidum](https://portal.pacman.obis.org/?area=&confidence=&risk_level=&status=unreviewed&status=plausible&status=confirmed&status=rejected&taxon_name=Didemnum+perlucidum&taxon=212506). This is an interesting example as it includes detections with `low`, `medium`, and `high` confidence scores.
+
+### Scan data page
+
+This page allows quickly scanning pipeline results before submitting data to OBIS. Taxonomic identifiers are extracted from the data, and a list of matching risk analyses is shown. Test this by submitting the occurrence file you downloaded earlier.
+
+### Administrator options
+
+Administrators of the system can:
+
+- Change the status of a detection
+- Change the pest status of a species for an area
+- Add notes about species
+- Add notes about a specific species in an area
+
+:warning: To do: show pest status when not signed in.
 
 ## Other resources
 
