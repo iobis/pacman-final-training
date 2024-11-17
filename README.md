@@ -2,6 +2,8 @@
 
 The goal of this training session is to go over the data submission process for the PacMAN decision support tool, and do a hands-on demonstration of every step in the process.
 
+![portal](images/portal.png)
+
 ## PacMAN data flow
 
 The PacMAN decision support system integrates detections from various sources by connecting to the OBIS database. Data publishing to OBIS typically happens through an **Integrated Publishing Toolkit (IPT)** instance. This is also the case for the PacMAN monitoring campaigns. Before sequence data from eDNA sampling can be published to OBIS, it needs to be **processed and formatted in the Darwin Core format**. Processing involves quality controlling and trimming of sequences, ASV inference, and taxonomic annotation. These steps are taken care of by the [PacMAN bioinformatics pipeline](https://github.com/iobis/PacMAN-pipeline).
@@ -81,7 +83,7 @@ docker run --platform linux/amd64 \
 
 #### Pipeline report and Darwin Core files
 
-Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) with the provided credentials to explore an example pipeline result dataset. JupyterHub is an online coomputing environment that allows us to explore data data without the need to download any files or install any software locally.
+Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) with the provided credentials to explore an example pipeline result dataset. JupyterHub is an online computing environment that allows us to explore data data without the need to download any files or install any software locally.
 
 Navigte to the example dataset in `shared/example_results` and check the following files:
 
@@ -171,6 +173,8 @@ Use the taxon filter on the right to show the detections for a single species, [
 ### Scan data page
 
 This page allows quickly scanning pipeline results before submitting data to OBIS. Taxonomic identifiers are extracted from the data, and a list of matching risk analyses is shown. Test this by submitting the occurrence file you downloaded earlier.
+
+![scan](images/scan.png)
 
 ### Administrator options
 
