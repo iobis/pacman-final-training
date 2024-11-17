@@ -164,7 +164,7 @@ A few examples:
   - `High` risk score because the species is on a priority list for the area. In addition, it is detected in its introduced range and is known to have impacts.
 - [Detection of Musculus viridulus](https://portal.pacman.obis.org/detection/17090/)
   - `High` confidence score because it is a morphological identification.
-  - `Low` risk score because it is not recorded within the introduced range, and the species is not recorded as invasive anywhere (according to WRiMS).
+  - `Low` risk score because it is not recorded within the introduced range, and the species is not recorded as invasive anywhere (at least according to WRiMS).
 
 Use the taxon filter on the right to show the detections for a single species, [for example: Didemnum perlucidum](https://portal.pacman.obis.org/?area=&confidence=&risk_level=&status=unreviewed&status=plausible&status=confirmed&status=rejected&taxon_name=Didemnum+perlucidum&taxon=212506). This is an interesting example as it includes detections with `low`, `medium`, and `high` confidence scores.
 
