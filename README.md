@@ -148,6 +148,27 @@ We are now ready to publish. First set visibility to public the `Visibility` sec
 To see how records are made available by the OBIS system, run [this API call](https://api.obis.org/occurrence?geometry=POLYGON%20((178.342438%20-18.216307,%20178.342438%20-18.071451,%20178.534698%20-18.071451,%20178.534698%20-18.216307,%20178.342438%20-18.216307))) which fetches occurrence data from the Suva area.
 
 ## Decision support
+
+Go to the PacMAN decision support portal at <https://portal.pacman.obis.org/>. The portal home page shows all detections (most recent first) regardless of their identification confidence score or assessed risk level. To read more about confidence scores and risk levels, navigate to the `About` page.
+
+Apply filters to only see detections with higher confidence levels or risk score. For example, [this](https://portal.pacman.obis.org/?area=&confidence=medium&risk_level=medium&status=unreviewed&status=plausible&status=confirmed&status=rejected&taxon_name=&taxon=) only shows detections with medium confidence or above and medium risk or above. For molecular observations, `medium` confidence means sufficient reads, high percent identity with a reference sequence, and few alternative identifications. `Medium` risk or above means that the species is a known introduced species in the region. If the species is known to have impacts, this will result in a `high` risk score.
+
+A few examples:
+
+:warning: To do: show reads etc on detection detail.
+
+- [Detection of Phaeostachys spinifera](https://portal.pacman.obis.org/detection/17171/)
+  - `Low` confidence score because there are just 8 reads, and 5 possible identifications.
+  - `Low` risk score because it is not a known introduced species in the area, there are no records of impact anywhere, and it has been detected outside the species' thermal range.
+- [Detection of Perna viridis](https://portal.pacman.obis.org/detection/16841/)
+  - `Low` confidence score because there are just 7 reads.
+  - `High` risk score because the species is on a priority list for the area. In addition, it is detected in its introduced range and is known to have impacts.
+- [Detection of Musculus viridulus](https://portal.pacman.obis.org/detection/17090/)
+  - `High` confidence score because it is a morphological identification.
+  - `Low` risk score because it is not recorded within the introduced range, and the species is not recorded as invasive anywhere (according to WRiMS).
+
+Use the taxon filter on the right to show the detections for a single species, [for example: Didemnum perlucidum](https://portal.pacman.obis.org/?area=&confidence=&risk_level=&status=unreviewed&status=plausible&status=confirmed&status=rejected&taxon_name=Didemnum+perlucidum&taxon=212506). This is an interesting example as it includes detections with `low`, `medium`, and `high` confidence scores.
+
 ## Other resources
 
 - [OBIS SG 12 training](https://github.com/iobis/sg-12-training): training materials on R, JupyterHub, git, and DNADerivedData.
