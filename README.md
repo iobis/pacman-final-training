@@ -14,9 +14,9 @@ The PacMAN decision support system integrates detections from various sources by
 
 ### Taxonomic annotation
 
-The PacMAN pipeline uses a number of **taxonomic annotation algorithms**. The main taxonomic assignment, which is used to populate the `scientificName` field in Darwin Core, is the naïve Bayesian classifier [RDP Classifier](https://pmc.ncbi.nlm.nih.gov/articles/PMC1950982/). RDP Classifier calculates a probability for every possible taxonomic annotation using k-mer frequences, and then applies a bootstrapping procedure to obtain a confidence score for each taxonomic level.
+The PacMAN pipeline uses a number of **taxonomic annotation algorithms**. The main taxonomic assignment algorithm is a **machine learning algorithm**, which is used to populate the `scientificName` field in Darwin Core. The algorithm is a naïve Bayesian classifier called [RDP Classifier](https://pmc.ncbi.nlm.nih.gov/articles/PMC1950982/). RDP Classifier calculates a probability for every possible taxonomic annotation using k-mer frequences, and then applies a bootstrapping procedure to obtain a confidence score for each taxonomic level.
 
-The pipeline also includes a [VSEARCH](https://github.com/torognes/vsearch) step which uses k-mer based search to find the closest matches in a reference database. VSEARCH also provides a similarity score for each matching sequence. The results from this alternative algorithm are included in the `identificationRemarks` Darwin Core field.
+The pipeline also includes a **search algorithm** called [VSEARCH](https://github.com/torognes/vsearch) to find the closest matches in a reference database. VSEARCH also provides a similarity score for each matching sequence. The results from this alternative algorithm are included in the `identificationRemarks` Darwin Core field.
 
 <img src="images/classification.png" width="600" />
 
