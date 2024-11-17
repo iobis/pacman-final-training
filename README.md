@@ -12,20 +12,22 @@ The PacMAN decision support system integrates detections from various sources by
 
 ### Taxonomic annotation
 
-The PacMAN pipeline uses a number of taxonomic annotation algorithms. The main taxonomic assignment, which is used to populate the `scientificName` field in Darwin Core, is the naïve Bayesian classifier RDP Classifier. RDP Classifier calculates a probability for every possible taxonomic annotation using k-mer frequences, and then applies a bootstrapping procedure to obtain a confidence score for each taxonomic level.
+The PacMAN pipeline uses a number of taxonomic annotation algorithms. The main taxonomic assignment, which is used to populate the `scientificName` field in Darwin Core, is the naïve Bayesian classifier [RDP Classifier](https://pmc.ncbi.nlm.nih.gov/articles/PMC1950982/). RDP Classifier calculates a probability for every possible taxonomic annotation using k-mer frequences, and then applies a bootstrapping procedure to obtain a confidence score for each taxonomic level.
 
-The pipeline also includes a VSEARCH step which uses k-mer based search to find the closest matches in a reference database. VSEARCH also provides a similarity score for each matching sequence. The results from this alternative algorithm are included in the `identificationRemarks` Darwin Core field.
+The pipeline also includes a [VSEARCH](https://github.com/torognes/vsearch) step which uses k-mer based search to find the closest matches in a reference database. VSEARCH also provides a similarity score for each matching sequence. The results from this alternative algorithm are included in the `identificationRemarks` Darwin Core field.
 
 <img src="images/classification.png" width="600" />
 
 | Algorithm | Results | Darwin Core field |
 | --- | --- | --- |
-| RDP Classifier | family X (confidence 1), genus Y (confidence 0.9), species B (confidence 0.3) | scientificName |
+| RDP Classifier | family X (confidence 1), **genus Y (confidence 0.9)**, species B (confidence 0.3) | scientificName |
 | VSEARCH |  family X, genus Y, species A (identity 0.997) <br/> family X, genus Y, species B (identity 0.995) <br/> family X, genus Y, species B (identity 0.995) <br/> family X, genus Y, species A (identity 0.992) <br/> family X, genus Z, species C (identity 0.983) <br/> family X, genus Z, species C (identity 0.975) | identificationRemarks |
+
+The PacMAN decision support system uses taxonomic annotations from both algorithms to identify potential invasives.
 
 ### Running the PacMAN pipeline
 
-The PacMAN bioinformatics pipeline is workflow based on commonly used bioinformatics tools and custom scripts. The pipeline is orchestrated using the Snakemake workflow management system. Snakemake takes care of installing the necessary dependencies in Conda environments, and running the different steps of the pipeline in the correct order.
+The [PacMAN bioinformatics pipeline](https://github.com/iobis/PacMAN-pipeline) is workflow based on commonly used bioinformatics tools and custom scripts. The pipeline is orchestrated using the [Snakemake](https://snakemake.github.io/) workflow management system. Snakemake takes care of installing the necessary dependencies in [Conda](https://docs.conda.io/en/latest/) environments, and running the different steps of the pipeline in the correct order.
 
 In addition to installing Conda and Snakemake locally, it's also possible to run the pipeline using Docker. In this case, the pipeline is encapsulated in a Docker container, and the data and results folders are mounted as "volumes" so they can be shared between the Docker container and the host machine.
 
@@ -77,11 +79,9 @@ docker run --platform linux/amd64 \
 
 ### PacMAN pipeline results
 
-:warning: To do: add screenshots.
-
 #### Pipeline report
 
-Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) to explore an example pipeline result dataset. JupyterHub is an online coomputing environment that allows us to explore data data without the need to download any files or install any software locally.
+Sign into the [OBIS JupyterHub](https://jupyter.obis.org/) with the provided credentials to explore an example pipeline result dataset. JupyterHub is an online coomputing environment that allows us to explore data data without the need to download any files or install any software locally.
 
 Navigte to the example dataset in `shared/example_results` and check the following files:
 
@@ -155,8 +155,6 @@ Go to the PacMAN decision support portal at <https://portal.pacman.obis.org/>. T
 Apply filters to only see detections with higher confidence levels or risk score. For example, [this](https://portal.pacman.obis.org/?area=&confidence=medium&risk_level=medium&status=unreviewed&status=plausible&status=confirmed&status=rejected&taxon_name=&taxon=) only shows detections with medium confidence or above and medium risk or above. For molecular observations, `medium` confidence means sufficient reads, high percent identity with a reference sequence, and few alternative identifications. `Medium` risk or above means that the species is a known introduced species in the region. If the species is known to have impacts, this will result in a `high` risk score.
 
 A few examples:
-
-:warning: To do: show reads etc on detection detail.
 
 - [Detection of Phaeostachys spinifera](https://portal.pacman.obis.org/detection/17171/)
   - `Low` confidence score because there are just 8 reads, and 5 possible identifications.
