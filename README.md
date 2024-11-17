@@ -152,6 +152,9 @@ As the files are using Darwin Core terms, the mapping is done automatically and 
 To see how records are made available by the OBIS system, run [this API call](https://api.obis.org/occurrence?geometry=POLYGON%20((178.342438%20-18.216307,%20178.342438%20-18.071451,%20178.534698%20-18.071451,%20178.534698%20-18.216307,%20178.342438%20-18.216307))) which fetches occurrence data from the Suva area.
 
 ## Decision support
+
+![taxon page](images/taxon_page.png)
+
 ### Detections
 
 Go to the PacMAN decision support portal at <https://portal.pacman.obis.org/>. The portal home page shows all detections (most recent first) regardless of their identification confidence score or assessed risk level. To read more about confidence scores and risk levels, navigate to the `About` page.
