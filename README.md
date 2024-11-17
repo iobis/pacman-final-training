@@ -206,8 +206,8 @@ Administrators of the system can:
 
 - Change the status of a detection
 - Change the pest status of a species for an area
-- Add notes about species ([example](https://portal.pacman.obis.org/taxon/709533/))
-- Add notes about a specific species in an area
+- Add notes about species ([example: Eualetes tulipa](https://portal.pacman.obis.org/taxon/709533/))
+- Add notes about a specific species in an area ([example: Didemnum vexillum](https://portal.pacman.obis.org/analysis/6797/))
 
 ## Other resources
 
